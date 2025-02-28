@@ -2,7 +2,7 @@ const { Pool } = require("pg");
 
 const { HOST,
     USER,
-    DATABASE,
+    NAME,
     PASSWORD,
     // DBPORT
      } = process.env;
@@ -10,7 +10,7 @@ const { HOST,
 module.exports = new Pool ({
     host: HOST,
     user: USER,
-    database: DATABASE,
+    database: NAME,
     password: PASSWORD,
     ssl: true
 
