@@ -85,7 +85,7 @@ VALUES ('Rogue Pullover Hoodie', 'Mens Apparel', 'large', 4.0, 1, 'https://asset
 async function main(){
     console.log("seeding...");
     const client = new Client ({
-        connectionString: "postgresql://postgres:3251lima@localhost:5432/fitness_inventory",
+        connectionString: "postgres://koyeb-adm:npg_ZLGe6iP8pRaH@ep-lucky-smoke-a2yinkfh.eu-central-1.pg.koyeb.app/koyebdb?sslmode=require",
     });
     await client.connect();
     await client.query(SQL);

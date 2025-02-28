@@ -12,6 +12,8 @@ module.exports = new Pool ({
     user: USER,
     database: DATABASE,
     password: PASSWORD,
+    ssl: true
+
     // port: DBPORT
 
 });
