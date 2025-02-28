@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+
+    <title> <%= title %> </title>
+</head>
+<body>
+
+
+    <%- include("partials/navbar", {searchFromHomePage: true} ) %>
+
+
+    <div class="section gallery-container">
+        <img src="https://www.newbodyplan.co.uk/wp-content/uploads/2019/08/Workout-variables-to-get-lean-and-strong-scaled-e1614884221750-1500x680.jpg" />
+    </div>
+
+ <div class="section-wrapper">
+
+    <div class="section recently-added">
+        <h3>RECENTLY ADDED</h3>
+        
+
+        <div class="recently-added-container">
+
+                <div class="product-container">
+                    <img class="img-container" src="https://assets.roguefitness.com/f_auto,q_auto,c_fill,g_center,w_308,h_308,b_rgb:f8f8f8/catalog/Conditioning/Endurance%20/Bikes/ECHOBIKE/ECHOBIKE-TH_ih5rzy.png" />
+                    <h4>Rogue Echo Bike</h4>
+                </div>
+
+                <div class="product-container">
+                    <img class="img-container" src="https://assets.roguefitness.com/f_auto,q_auto,c_fill,g_center,w_308,h_308,b_rgb:f8f8f8/catalog/Weightlifting%20Bars%20and%20Plates/Barbells/Mens%2020KG%20Barbells/RA2878-BLBR/RA2878-BLBR-TH_lkgqxu.png" />
+                    <h4>Hybrid Power Bar</h4>
+                </div>
+
+                <div class="product-container">
+                    <img class="img-container" src="https://assets.roguefitness.com/f_auto,q_auto,c_fill,g_center,w_308,h_308,b_rgb:f8f8f8/catalog/Weightlifting%20Bars%20and%20Plates/Plates/Bumper%20Plates/IP0119/IP0119-TH_tpvogj.png" />
+                    <h4>Rogue Bumper Plates</h4>
+                </div>
+
+                <div class="product-container">
+                    <img class="img-container" src="https://assets.roguefitness.com/f_auto,q_auto,c_fill,g_center,w_308,h_308,b_rgb:f8f8f8/bundle/fm-6-bundle/fm-6-bundle-rogue_red-aluminum-plate_loaded-no_shrouds.png" />
+                    <h4>FM6 Rogue Rack</h4>
+                </div>
+
+                <div class="product-container">
+                    <img class="img-container" src="https://assets.roguefitness.com/f_auto,q_auto,c_fill,g_center,w_308,h_308,b_rgb:f8f8f8/RF0983-Texture-Black-TH_mwpdiz_gsqogp.png" />
+                    <h4>Incline Barbell Rack</h4>
+                </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<%- include("partials/footer") %>
+
+
+
+    
+
+
+</body>
+</html>

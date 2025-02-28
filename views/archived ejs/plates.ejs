@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="styles.css" rel="stylesheet">
+
+    <title><%= title %> </title>
+</head>
+<body>
+
+    <a href="/">Home</a>
+
+    <h1> <%= title %> </h1>
+    <% const { filterByRatingValue, filterByBrands, filterByCategory, filterByPlateType, filterByUOM }  = filters; %>
+
+    <form action="/plates" method="get">
+
+        <!-- </form> -->
+        <div class="grid">
+            <a href="/barbells">barbells</a>
+            <a href="/plates">plates</a>
+            <a href="/racks">racks</a>
+            <a href="/apparel">apparel</a>
+
+        </div>
+
+
+        <div>
+
+            <p>Sort By:</p>
+            <select onchange="this.form.submit()" name="sortBy" id="sortByDropdown">
+                <option  value="alpha" <%= sortBy === 'alpha' ? 'selected' : '' %> >Alphabetically (A to Z)</option>
+                <option  value="reverse-alpha" <%= sortBy === 'reverse-alpha' ? 'selected' : '' %> >Reverse Alphabetically (Z to A)</option>
+                <option  value="rating-high-to-low" <%= sortBy === 'rating-high-to-low' ? 'selected' : '' %> >Rating (highest to lowest)</option>
+                <option  value="rating-low-to-high" <%= sortBy === 'rating-low-to-high' ? 'selected' : '' %> >Rating (lowest to highest)</option>
+            </select><br>
+            <!-- drop down menu that ranks alphabetticaly and by rating in desc and asc order -->
+
+
+        </div>
+
+        <div>
+       
+            <p>Filter By:</p>
+    
+            <div class="sortby-filter">
+                    <div class="filter-title">Category</div>
+                
+
+                        <input onchange="this.form.submit()" type="radio" id="Bumper Plates" name="category" value="Bumper Plates" <%= filterByCategory === 'Bumper Plates' ? 'checked' : '' %> />
+                        <label for="Bumper Plates" class=<%= filterByCategory === 'Bumper Plates' ? 'selected-category' : '' %> >Bumper Plates</label>
+
+                        <br>
+
+                        <input onchange="this.form.submit()" type="radio" id="Steel Plates" name="category" value="Steel Plates" <%= filterByCategory === 'Steel Plates' ? 'checked' : '' %> />
+                        <label for="Steel Plates" class=<%= filterByCategory === 'Steel Plates' ? 'selected-category' : '' %> >Steel Plates</label>
+
+                        <br>
+
+                        <input onchange="this.form.submit()" type="radio" id="all" name="category" value="all" <%= filterByCategory === 'all' ? 'checked' : '' %> />
+                        <label for="all" class=<%= filterByCategory === 'all' ? 'selected-category' : '' %> >All categories</label>
+
+
+
+            </div>
+
+
+            <div class="sortby-filter">
+                    <div class="filter-title">Plate type</div>
+
+                    
+                        <input onchange="this.form.submit()" type="checkbox" id="powerliftingPlateType" name="powerliftingPlateType" value="powerlifting" <%= filterByPlateType.includes('powerlifting') ? 'checked' : '' %> >
+                        <label for="powerliftingPlateType">Powerlifting</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="multipurposePlateType" name="multipurposePlateType" value="multipurpose" <%= filterByPlateType.includes('multipurpose') ? 'checked' : '' %> >
+                        <label for="multipurposePlateType">Multipurpose</label><br>
+
+            </div>
+
+            <div class="sortby-filter">
+                    <div class="filter-title">Unit of measure</div>
+
+                    
+                    <input onchange="this.form.submit()" type="radio" id="lb" name="uom" value="lb" <%= filterByCategory === 'lb' ? 'checked' : '' %>  />
+                    <label for="lb" class=<%= filterByUOM === 'lb' ? 'selected-category' : '' %> >LB</label>
+
+                    <br>
+
+                    <input onchange="this.form.submit()" type="radio" id="kg" name="uom" value="kg" <%= filterByCategory === 'kg' ? 'checked' : '' %> />
+                    <label for="kg" class=<%= filterByUOM === 'kg' ? 'selected-category' : '' %> >KG</label>
+
+                    <br>
+
+                    <input onchange="this.form.submit()" type="radio" id="allUnits" name="uom" value="all units" <%= filterByCategory === 'all units' ? 'checked' : '' %> />
+                    <label for="allUnits" class=<%= filterByUOM === 'all units' ? 'selected-category' : '' %> >All</label>
+
+            </div>
+
+
+            <div class="sortby-filter">
+                    <div class="filter-title">Rating ( <%= filterByRatingValue ? filterByRatingValue : 3  %> )</div>
+                    
+                        <input onchange="this.form.submit()" type="range" id="rating" name="rating" min="1" max="5" step="0.1" value=<%= filterByRatingValue ? filterByRatingValue : 3 %> >
+
+            </div>
+                
+            <div class="sortby-filter">
+                    <div class="filter-title">Brand</div>
+
+              
+                        <input onchange="this.form.submit()" type="checkbox" id="rogue" name="rogue" value=1 <%= filterByBrands.includes(1) ? 'checked' : '' %> >
+                        <label for="rogue">Rogue</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="ghost" name="ghost" value=2 <%= filterByBrands.includes(2) ? 'checked' : '' %> >
+                        <label for="ghost">Ghost</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="oso" name="oso" value=3 <%= filterByBrands.includes(3) ? 'checked' : '' %> >
+                        <label for="oso">Oso</label><br>
+
+                        <input onchange="this.form.submit()"  type="checkbox" id="kabuki" name="kabuki" value=4 <%= filterByBrands.includes(4) ? 'checked' : '' %> >
+                        <label for="kabuki">Kabuki Strength</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="york" name="york" value=5 <%= filterByBrands.includes(5) ? 'checked' : '' %> >
+                        <label for="york">York</label><br>
+            
+                    
+            </div>
+        
+        </div>
+    </form>
+    
+    <div class="grid">
+        <% sortedInventory.map((plate) => { %>
+        
+            <a href="plates/<%= plate.id %>">
+                <div class="square">
+                    <p><%= plate.name %></p> 
+                    <p>ID: <%= plate.id %></p> 
+                    <p>RATING: <%= plate.rating %></p> 
+                    
+                </div>
+
+            </a>
+
+    
+        <% }) %>
+
+        
+        <div class="square">
+            <a href="/new?item-selection=plates"> Add new item</a>
+        </div>
+
+
+    </div>
+
+
+    
+
+
+</body>
+</html>

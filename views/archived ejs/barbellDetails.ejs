@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  href="styles.css" rel="stylesheet">
+
+    <title><%= title %> </title>
+</head>
+<body>
+
+    <h1> <%= title %> </h1>
+    
+        
+        <% itemDetails.map((barbell) => { %>
+
+            <% if (editMode === 'true') { %>
+                <p>show input/edit mode: <%= editMode %></p>
+            
+                <form action="/barbells/<%= barbell.id %>/update" method="post">
+                    
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value='<%= barbell.name %>' required />
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" value='<%= barbell.category %>' required />
+                    <label for="bar-use">Bar use:</label>
+                    <input type="text" id="bar-use" name="bar-use" value='<%= barbell.bar_use %>' required />
+                    <label for="bar-weight">Bar weight (in KG):</label>
+                    <input type="number" id="bar-weight" name="bar-weight" step=".1" value='<%= parseInt(barbell.bar_weight) %>' required />
+                    <label for="rating">Rating:</label>
+                    <input type="number" id="rating" name="rating" step=".1" value='<%= barbell.rating %>' required />
+                    <label for="brand">Select brand:</label>
+                    <select name="brand" id="brand">
+                        <option value="1">Rogue</option>
+                        <option value="2">Ghost</option>
+                        <option value="3" >Oso</option>
+                        <option value="4">Kabuki Strength</option>
+                        <option value="5">York</option>
+                    </select><br>
+
+                
+                    <button type="submit">Submit Changes</button>
+                </form>
+
+            <% } else { %>
+                <p> HIDE INPUT/edit mode: <%= editMode %></p>
+                <p>HIDING INPUT FIELDS</p>
+                <p><%= barbell.name %></p> 
+                <p><%= barbell.category %></p> 
+                <p><%= barbell.bar_use %></p> 
+                <p><%= barbell.bar_weight %></p> 
+                <p><%= barbell.rating %></p> 
+                <p>Brand ID: <%= barbell.brand_id %></p> 
+
+                <form action="/barbells/<%= barbell.id %>?editMode=true" method="post">
+                    <button type="submit">Edit Mode</button>
+                </form>
+
+            <% } %>
+
+            <form action="/delete?table=barbells&id=<%= barbell.id %>" method="post" >
+                                <button disabled type="submit">Delete Item</button>
+    
+            </form>
+                          
+            
+
+
+
+
+        <% }) %> 
+
+
+
+                        <!-- UPDATE 1/29/25 SEE LINE BELOW -->
+                        <!-- i can just create edit as a query to the barbell detials page and manipulate edit mode based on that -->
+
+                        <!--  showInputFields ? 'Save' : 'Edit' -->
+
+              
+        
+                        <!-- onclick=showEditFields -->
+
+                        <!-- onclick run function to change some var to true/false
+                             use ejs to hide P tags based on var vakue and instead
+                            show input fields with the input value set to barbell data
+                            show button that allows to update data and send update put request with new data
+                            as well as reset var to hide input fields and show p tags again
+                        -->
+
+
+
+             
+
+    
+    
+
+   
+            <!-- create delete button that removes from DB based on ID -->
+            <!-- create edit button that updates  DB based on ID -->
+
+
+            <!-- <script>
+                
+                function toggleEditMode(){
+                    console.log('test')
+                 showInputFields = !showInputFields;
+                }
+   
+
+            </script> -->
+
+</body>
+</html>

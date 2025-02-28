@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../styles.css" rel="stylesheet">
+
+    <title><%= title %> </title>
+</head>
+<body>
+
+    <%- include("partials/navbar", {searchFromHomePage: true}) %>
+
+    <!-- <h1 class="page-header"> <%= itemDetails.name %> </h1>     -->
+    <div class="main-content wrapper center">
+            <img class="item-image" src="<%= itemDetails.imgsrc %>" alt="">
+,
+            <% if (editMode === 'true') { %>
+                <!-- <p>show input/edit mode: <%= editMode %></p> -->
+                <div class="edit-form">
+                    <h1 class="edit item-name"><%= itemDetails.name %></h1> 
+
+                    <form class="edit-form-inputs" action="/<%= table %>/<%= itemDetails.id %>/update" method="post">
+                        
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" value='<%= itemDetails.name %>' required />
+                        <label for="category">Category:</label>
+                        <input type="text" id="category" name="category" value='<%= itemDetails.category %>' required />
+                        <label for="rating">Rating:</label>
+                        <input type="number" id="rating" name="rating" step=".1" value='<%= itemDetails.rating %>' required />
+                        <label for="brand">Select brand:</label>
+                        <select name="brand" id="brand">
+                            <option value="1">Rogue</option>
+                            <option value="2">Ghost</option>
+                            <option value="3" >Oso</option>
+                            <option value="4">Kabuki Strength</option>
+                            <option value="5">York</option>
+                        </select><br>
+                        
+                        <% if (table === 'barbells') { %>
+
+                            <label for="bar-use">Bar use:</label>
+                            <input type="text" id="bar-use" name="bar-use" value='<%= itemDetails.bar_use %>' required />
+                            <label for="bar-weight">Bar weight (in KG):</label>
+                            <input type="number" id="bar-weight" name="bar-weight" step=".1" value='<%= parseInt(itemDetails.bar_weight) %>' required />
+                        
+                        <% } else if (table === 'plates') { %>
+                        
+                            <label for="plate-type">Plate type:</label>
+                            <input type="text" id="plate-type" name="plate-type" value='<%= itemDetails.plate_type %>' required />
+                            
+                            <div class="UOM-input"> 
+                                <span>Unit of Measurement: </span>
+                                <label for="uom">LB</label>
+                                <input type="radio" id="uom" name="uom" value="lb" />
+                                <label for="uom">KG</label>
+                                <input type="radio" id="uom" name="uom" value="kg" />      
+                            </div>
+ 
+
+                        <% } else if (table === 'apparel') { %>
+
+                            <label for="shirt-size">Size:</label>
+                            <select name="shirt-size" id="shirt-size">
+                                <option value="large">Large</option>
+                                <option value="medium">Medium</option>
+                                <option value="small">Small</option>
+                            </select><br>           
+                        
+                        <% } %>
+
+                        <input type="hidden" name="imgsrc" id="imgsrc" value="<%= itemDetails.imgsrc %>">
+
+                        <div>
+                            <button type="submit" class="submit-btn-style">Submit Changes</button>
+                        
+                            <form action="/<%= table %>/<%= itemDetails.id %>?editMode=false" method="post">
+                                <button class='edit-btn-style' type="submit">Cancel</button>
+                            </form>
+                        </div>
+                        
+                        <form action="/delete?table=<%= table %>&id=<%= itemDetails.id %>" method="post" >
+                            <button class='del-btn-style' type="submit">Delete Item</button>
+                        </form>
+
+                    </form>
+                </div>
+
+            <% } else { %>
+                <!-- <p> HIDE INPUT/edit mode: <%= editMode %></p>
+                <p>HIDING INPUT FIELDS</p> -->
+                <div class="details-box">
+                    <div>
+                        <h1 class="item-name"><%= itemDetails.name %></h1> 
+                        <p class="item-category"> <%= itemDetails.category %></p> 
+                        <p class="item-rating"><%= itemDetails.rating %> &#9733;</p> 
+                        <p class="item-detail"><b>Brand: </b><%= itemDetails.brand_id %></p> 
+        
+                        <% if (table === 'barbells') { %>
+        
+                            <p class="item-detail"><b>Bar Use: </b><%= itemDetails.bar_use %></p> 
+                            <p class="item-detail"><b>Bar Weight: </b><%= itemDetails.bar_weight %></p> 
+                        
+                        <% } else if (table === 'plates') { %>
+                        
+                            <p class="item-detail"><b>Plate Type: </b><%= itemDetails.plate_type %></p> 
+                            <p class="item-detail"><b>Unit of Measure: </b><%= itemDetails.unit_of_measure %></p> 
+        
+                        <% } else if (table === 'apparel') { %>
+        
+                            <p class="item-detail"><b>Size: </b><%= itemDetails.size %></p> 
+        
+                        <% } %>
+                    </div>
+
+                    <div>
+                        <form   action="/<%= table %>/<%= itemDetails.id %>?editMode=true" method="post">
+                            <button class='edit-btn-style' type="submit">Edit Mode</button>
+                        </form>
+    
+                        <form action="/delete?table=<%= table %>&id=<%= itemDetails.id %>" method="post" >
+                            <button  class='del-btn-style'type="submit">Delete Item</button>
+    
+                        </form>
+                      
+                    </div>
+    
+
+
+                </div>
+
+
+            <% } %>
+    
+
+    </div>            
+
+                <!-- ensure footer is at bottom, split detials and buttons so details is aligned with top of photo and btns with bottom of item photo, use space between? -->
+
+
+            <%- include("partials/footer") %>
+
+
+
+
+
+
+</body>
+</html>

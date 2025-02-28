@@ -1,0 +1,98 @@
+<header>
+
+    <!-- header ( (nav (motif- navlink -hidden searchicon- hidden menu icon) (search bar) (hidden nav links)  (hidden mobile searchbar)  ) -->
+
+
+    <nav>
+        <div class="motif">
+            <a href="/"><h2 class="motif-header">bars&plates</h2></a>
+            <h3 class="motif-subheader">inventory system</h3>
+        </div>
+
+            <a class="navlink" href="/barbells">Barbells</a>
+            <a class="navlink" href="/plates">Plates</a>
+            <a class="navlink" href="/racks">Racks</a>
+            <a class="navlink" href="/apparel">Apparel</a>        
+        
+            <span class="icons">
+                <span class="material-symbols-outlined menu-icon" onclick="showNavlinks()">
+                    menu
+                </span>
+            
+                <span class="material-symbols-outlined search-icon"  onclick="showSearchBar()">
+                        search
+                </span>
+            </span>
+
+        
+    </nav>
+
+
+    <% if (searchFromHomePage) { %>
+
+        <form class="searchbarForm" action="/search" method="get">
+            <input type="search" name="search" id="search" placeholder="Type search here...">
+            <button type="submit" id="submit-btn">Search</button>
+        </form>
+
+    <% } else { %> 
+
+        <form class="searchbarForm" action="/search" method="get">
+            <div class="searchbar">
+                <input type="search" name="search" id="search" value='<%=searchTerm ? searchTerm : ""%>' placeholder='<%=searchTerm ? searchTerm : "Type search here"%>' />
+                <button type="submit"  id="submit-btn">Search</button>
+                <!-- <% if (!searchTerm.trim()) { %>
+                    <p id="error-message" style="color: red;">Please enter non-whitespace characters</p>
+                <% } %> -->
+            
+            </div>
+        </form>
+    <% } %>    
+
+
+    <div class="mobile-navlinks">
+        <a class="mobile-navlink" href="/barbells">Barbells</a>
+        <a class="mobile-navlink" href="/plates">Plates</a>
+        <a class="mobile-navlink" href="/racks">Racks</a>
+        <a class="mobile-navlink" href="/apparel">Apparel</a>       
+    </div>
+    
+    <% if (searchFromHomePage) { %>
+
+        <form class="mobile-searchbarForm" action="/search" method="get">
+            <input type="search" name="search" id="search" placeholder="Type search here...">
+            <button type="submit" id="submit-btn">Search</button>
+        </form>
+
+    <% } else { %> 
+
+        <form class="mobile-searchbarForm" action="/search" method="get">
+            <div class="searchbar">
+                <input type="search" name="search" id="search" value='<%=searchTerm ? searchTerm : ""%>' placeholder='<%=searchTerm ? searchTerm : "Type search here"%>' />
+                <button type="submit"  id="submit-btn">Search</button>
+                <!-- <% if (!searchTerm.trim()) { %>
+                    <p id="error-message" style="color: red;">Please enter non-whitespace characters</p>
+                <% } %> -->
+            
+            </div>
+        </form>
+    <% } %>    
+
+    <script>
+
+            function showSearchBar(){
+                console.log('executing');
+                document.querySelector('.mobile-searchbarForm').classList.toggle('show');
+            }
+
+            function showNavlinks(){
+                console.log('executing');
+                document.querySelector('.mobile-navlinks').classList.toggle('show');
+            }
+
+
+    </script>
+
+
+</header>
+

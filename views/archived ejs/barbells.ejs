@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+
+    <title><%= title %> </title>
+</head>
+<body>
+    
+    <% const {filterByBarUse, filterByRatingValue, filterByBrands,filterByCategory} = filters; %>
+
+    <a href="/">Home</a>
+
+    <h1> <%= title %> </h1>
+    
+
+    <form action="/barbells" method="get"> 
+       
+        <div class="grid">
+            <a href="/barbells">barbells</a>
+            <a href="/plates">plates</a>
+            <a href="/racks">racks</a>
+            <a href="/apparel">apparel</a>
+    
+        </div>
+    
+    
+    <div>
+
+        <p>Sort By:</p>
+        <select onchange="this.form.submit()" name="sortBy" id="sortByDropdown">
+            <option  value="alpha" <%= sortBy === 'alpha' ? 'selected' : '' %> >Alphabetically (A to Z)</option>
+            <option  value="reverse-alpha" <%= sortBy === 'reverse-alpha' ? 'selected' : '' %> >Reverse Alphabetically (Z to A)</option>
+            <option  value="rating-high-to-low" <%= sortBy === 'rating-high-to-low' ? 'selected' : '' %> >Rating (highest to lowest)</option>
+            <option  value="rating-low-to-high" <%= sortBy === 'rating-low-to-high' ? 'selected' : '' %> >Rating (lowest to highest)</option>
+        </select><br>
+        <!-- drop down menu that ranks alphabetticaly and by rating in desc and asc order -->
+
+
+    </div>
+
+    <div>
+        <p>Filter By:</p>
+
+    
+        
+                <div class="sortby-filter">
+                    <div class="filter-title">Category</div>
+                    
+                        <input onchange="this.form.submit()" type="radio" id="Mens Barbells" name="category" value="Mens Barbells" <%= filterByCategory === 'Mens Barbells' ? 'checked' : '' %>  />
+                        <label for="Mens Barbells" class=<%= filterByCategory === 'Mens Barbells' ? 'selected-category' : '' %> >Mens Barbells</label>
+
+                        <br>
+
+                        <input onchange="this.form.submit()" type="radio" id="Junior Bars" name="category" value="Junior Bars" <%= filterByCategory === 'Junior Bars' ? 'checked' : '' %> />
+                        <label for="Junior Bars" class=<%= filterByCategory === 'Junior Bars' ? 'selected-category' : '' %> >Junior Bars</label>
+
+                        <br>
+
+                        <input onchange="this.form.submit()" type="radio" id="Womens Bars" name="category" value="Womens Bars" <%= filterByCategory === 'Womens Bars' ? 'checked' : '' %> />
+                        <label for="Womens Bars" class=<%= filterByCategory === 'Womens Bars' ? 'selected-category' : '' %> >Womens Bars</label>
+
+                        <br>
+
+                        <input onchange="this.form.submit()" type="radio" id="all" name="category" value="all" <%= filterByCategory === 'all' ? 'checked' : '' %> />
+                        <label for="all" class=<%= filterByCategory === 'all' ? 'selected-category' : '' %> >All categories</label>
+
+                </div>
+
+                <div class="sortby-filter">
+                    <div class="filter-title">Bar use</div>
+
+                    
+                        <input onchange="this.form.submit()" type="checkbox" id="multipurpose" name="multipurpose" value="multipurpose" <%= filterByBarUse.includes('multipurpose') ? 'checked' : '' %> >
+                        <label for="multipurpose">Multipurpose</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="technique" name="technique" value="technique" <%= filterByBarUse.includes('technique') ? 'checked' : '' %>>
+                        <label for="technique">Technique</label><br>
+
+                </div>
+                <div class="sortby-filter">
+                    <div class="filter-title">Rating ( <%= filterByRatingValue ? filterByRatingValue : 3  %> )</div>
+                    
+                        <input onchange="this.form.submit()" type="range" id="rating" name="rating" min="1" max="5" step="0.1" value=<%= filterByRatingValue ? filterByRatingValue : 3 %> >
+
+                </div>
+                <div class="sortby-filter">
+                    <div class="filter-title">Brand</div>
+
+              
+                        <input onchange="this.form.submit()" type="checkbox" id="rogue" name="rogue" value=1 <%= filterByBrands.includes(1) ? 'checked' : '' %> >
+                        <label for="rogue">Rogue</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="ghost" name="ghost" value=2 <%= filterByBrands.includes(2) ? 'checked' : '' %> >
+                        <label for="ghost">Ghost</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="oso" name="oso" value=3 <%= filterByBrands.includes(3) ? 'checked' : '' %> >
+                        <label for="oso">Oso</label><br>
+
+                        <input onchange="this.form.submit()"  type="checkbox" id="kabuki" name="kabuki" value=4 <%= filterByBrands.includes(4) ? 'checked' : '' %> >
+                        <label for="kabuki">Kabuki Strength</label><br>
+
+                        <input onchange="this.form.submit()" type="checkbox" id="york" name="york" value=5 <%= filterByBrands.includes(5) ? 'checked' : '' %> >
+                        <label for="york">York</label><br>
+            
+                    
+                </div>
+       
+        </div>
+     </form>
+
+    <div class="grid">
+
+
+        <% sortedInventory.map((barbell) => { %>
+        
+            <a href="barbells/<%= barbell.id %>?editMode=false">
+                <div class="square">
+                    <p><%= barbell.name %></p> 
+                    <p>ID: <%= barbell.id %></p> 
+                    
+                </div>
+
+            </a>
+    
+        <% }) %>
+
+        <div class="square">
+            <a href="/new?item-selection=barbells"> Add new item</a>
+        </div>
+
+    </div>
+
+
+    
+
+
+</body>
+</html>

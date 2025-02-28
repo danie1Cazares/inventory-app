@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="styles.css" rel="stylesheet">
+
+    <title><%= title %> </title>
+</head>
+<body>
+    
+    <a href="/">Home</a>
+
+    <h1> <%= title %> </h1>
+
+    <% itemDetails.map((apparel) => { %>
+
+        <% if (editMode === 'true') { %>
+            <p>show input/edit mode: <%= editMode %></p>
+        
+            <form action="/apparel/<%= apparel.id %>/update" method="post">
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value='<%= apparel.name %>' required />
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" value='<%= apparel.category %>' required />
+                <label for="shirt-size">Size:</label>
+                <select name="shirt-size" id="shirt-size">
+                    <option value="large">Large</option>
+                    <option value="medium">Medium</option>
+                    <option value="small">Small</option>
+                </select><br>               
+                <label for="rating">Select rating:</label> 
+                <input type="number" id="rating" name="rating" step=".1" value='<%= apparel.rating %>' required />
+                <label for="brand">Select brand:</label>
+                <select name="brand" id="brand">
+                    <option value="1">Rogue</option>
+                    <option value="2">Ghost</option>
+                    <option value="3" >Oso</option>
+                    <option value="4">Kabuki Strength</option>
+                    <option value="5">York</option>
+                </select><br>
+
+            
+                <button type="submit">Submit Changes</button>
+            </form>
+                        
+            <form action="/apparel/<%= apparel.id %>?editMode=false" method="post">
+                <button type="submit">Cancel</button>
+            </form>
+
+        <% } else { %>
+            <p> HIDE INPUT/edit mode: <%= editMode %></p>
+            <p>HIDING INPUT FIELDS</p>
+
+            <p><%= apparel.name %></p> 
+            <p><%= apparel.category %></p> 
+            <p><%= apparel.size %></p> 
+            <p><%= apparel.rating %></p> 
+            <p>Brand ID: <%= apparel.brand_id %></p> 
+                
+
+            <form action="/apparel/<%= apparel.id %>?editMode=true" method="post">
+                <button type="submit">Edit Mode</button>
+            </form>
+
+
+        <% } %>
+
+        <form action="/delete?table=apparel&id=<%= apparel.id %>" method="post" >
+                            <button disabled type="submit">Delete Item</button>
+
+        </form>
+                      
+        
+
+
+
+
+    <% }) %> 
+
+    
+
+
+
+
+    
+
+
+</body>
+</html>

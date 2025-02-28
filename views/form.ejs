@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link href="../styles.css" rel="stylesheet">
+
+    <title> <%= title %> </title>
+</head>
+    <body>
+        
+        <%- include("partials/navbar", {searchFromHomePage: true}) %>
+
+
+        <!-- <div class="form-box"> -->
+        <div class="wrapper column center">
+            <!-- <div class="edit-form"> -->
+                <h1>Add new item</h1>    
+
+                <!-- use EJS to change form fields based on item selection drop down -->
+
+                <form class="edit-form-inputs set-max-width" action="/new" method="get">
+                    <label for="item-selection">Select the item to add:</label>
+                    <select onchange="this.form.submit()"  name="item-selection" id="item-selection">
+                        <option value="barbells" <%= itemSelection === 'barbells' ? 'selected' : '' %> >Barbells</option>
+                        <option value="plates" <%= itemSelection === 'plates' ? 'selected' : '' %> >Plates</option>
+                        <option value="racks" <%= itemSelection === 'racks' ? 'selected' : '' %> >Racks</option>
+                        <option value="apparel" <%= itemSelection === 'apparel' ? 'selected' : '' %> >Apparel</option>
+                    </select><br>
+                </form>
+
+
+
+                <form class="edit-form-inputs set-max-width"  method="post" action="/new">
+
+                    <!-- <p>item selection / table is <%= itemSelection ? itemSelection : 'undefined' %> </p> -->
+
+                    <input type="hidden" id="hidden-item-selection" name="item-selection" value=" <%= itemSelection ? itemSelection : '' %> " />
+
+                    <label for="name">Enter item name:</label>
+                    <input type="text" id="name" name="name" required />
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required />
+                    <label for="rating">Rating:</label>
+                    <input type="number" id="rating" name="rating" step=".1" required />
+                    <label for="brand">Select brand:</label>
+                    <select name="brand" id="brand">
+                        <option value="1">Rogue</option>
+                        <option value="2">Ghost</option>
+                        <option value="3">Oso</option>
+                        <option value="4">Kabuki Strength</option>
+                        <option value="5">York</option>
+                    </select><br>
+
+
+                    <% if (itemSelection === 'barbells') { %>
+                        
+                        <label for="bar-use">Bar use:</label>
+                        <input type="text" id="bar-use" name="bar-use" required />
+                        <label for="bar-weight">Bar weight (in KG):</label>
+                        <input type="number" id="bar-weight" name="bar-weight" step=".1" required />
+
+                    <% } else if (itemSelection === 'plates') { %>    
+
+                        <label for="plate-type">Plate type:</label>
+                        <input type="text" id="plate-type" name="plate-type" required />
+
+                        <!-- <span>Unit of Measurement: </span>
+                        <label for="uom">LB</label>
+                        <input type="radio" id="uom" name="uom" value="lb" />
+                        <label for="uom">KG</label>
+                        <input type="radio" id="uom" name="uom" value="kg" /> -->
+
+                        <div class="UOM-input"> 
+                            <span>Unit of Measurement: </span>
+                            <label for="uom">LB</label>
+                            <input type="radio" id="uom" name="uom" value="lb" />
+                            <label for="uom">KG</label>
+                            <input type="radio" id="uom" name="uom" value="kg" />      
+                        </div>
+
+
+                    <% } else if (itemSelection === 'apparel') { %>    
+
+                        <label for="shirt-size">Size:</label>
+                        <select name="shirt-size" id="shirt-size">
+                            <option value="large">Large</option>
+                            <option value="medium">Medium</option>
+                            <option value="small">Small</option>
+                        </select><br>
+
+                    
+                    <% } %>        
+
+
+                    <% if(itemSelection) { %>
+                            <button class="submit-btn-style">Submit</button> 
+                    <% } %>    
+
+
+                </form>
+
+            <!-- </div> -->
+        </div>    
+        <%- include("partials/footer") %>
+
+
+    </body>
+</html>
+
+
