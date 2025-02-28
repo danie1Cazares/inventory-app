@@ -30,9 +30,6 @@ app.listen(PORT);
 // GIT PUSH TO REMOTE REPO
 
 
-// create search filters for each table based on table columns (iems in same groups)
-
-// - clean up css classes
 // - PUSH TO GIT
 // - DEPLOY
 
