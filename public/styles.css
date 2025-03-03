@@ -475,6 +475,11 @@ opacity: .5;
     color: white;
 }
 
+.icons {
+    display: flex;
+    column-gap: 1rem;
+}
+
 @media screen and (width >= 1120px){
     .mobile-searchbarForm {
         display:none;
